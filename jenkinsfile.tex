@@ -3,14 +3,14 @@ pipeline {
 
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
-        maven "MAVEN_HOME"
+        maven "maven_home"
     }
 
     stages {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                git 'https://github.com/dsr1017/suresh.git'
+                git 'https://github.com/Babu142/spring01.git''
 
                 // Run Maven on a Unix agent.
                 //sh "mvn -Dmaven.test.failure.ignore=true clean package"
@@ -24,7 +24,7 @@ pipeline {
                 // failed, record the test results and archive the jar file.
                 success {
                     junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.war'
+                    archiveArtifacts 'target/*.jar'
                 }
             }
         }
